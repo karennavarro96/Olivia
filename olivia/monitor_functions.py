@@ -267,7 +267,7 @@ def fill_rwf_var(rwfs, var_dict, sensor_type):
     #PMT_#_ACD plots
     if sensor_type is SensorType.PMT:
         for i in range(0, len(rwfs)):
-            var_dict[f'PMT{i}_ADCs'].extend(rwfs[i])
+                var_dict[f'PMT{i}_ADCs'].extend(rwfs[i])
 
 
 def fill_rwf_histos(in_path, config_dict):
@@ -289,7 +289,7 @@ def fill_rwf_histos(in_path, config_dict):
     for in_file in glob.glob(in_path):
         with tb.open_file(in_file, "r") as h5in:
             var = defaultdict(list)
-            nevt, pmtrwf, sipmrwf, _ = get_rwf_vectors(h5in)
+            nevt, pmtrwf, sipmrwf = get_rwf_vectors(h5in)
             for evt in range(nevt):
                 fill_rwf_var(pmtrwf [evt, :, :n_baseline], var, SensorType. PMT)
                 fill_rwf_var(sipmrwf[evt]                , var, SensorType.SIPM)
